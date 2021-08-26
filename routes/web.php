@@ -5,6 +5,7 @@ use App\Http\Controllers\AdministradorController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\VentaController;
 use App\Http\Controllers\ProductoController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------

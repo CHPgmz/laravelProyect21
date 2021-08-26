@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use Illuminate\Http\Request;
 
+
 class ProductoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth'); 
+        $this->middleware('auth', ['except' => ['listaAPI']]); 
     }
     /**
      * Display a listing of the resource.
@@ -97,4 +98,14 @@ class ProductoController extends Controller
     {
         //
     }
+    public function listaAPI(Request $request){
+        if($request->user()!=null){
+            $productos = Producto::all();
+            return $productos;
+        }
+        return "[]"; 
+        
+    }
+    
+
 }

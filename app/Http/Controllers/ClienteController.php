@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Cliente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClienteController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth'); 
+        $this->middleware('auth', ['except' => ['loginAPI']]);
     }
     /**
      * Display a listing of the resource.
@@ -85,5 +86,12 @@ class ClienteController extends Controller
     public function destroy(Cliente $cliente)
     {
         //
+    }
+    public function loginAPI(Request $request){
+        if ( Auth::guard('webcliente')->attempt(['usuario'=>$request->input('u'),'pass'=>$request->input('p')])){
+            return '{"Respuesta":"usuario aceptado"}';
+        }
+        return '{"Respuesta":"usuario no aceptado"}';
+
     }
 }

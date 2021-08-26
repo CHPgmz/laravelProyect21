@@ -15,7 +15,9 @@ return [
 
     'defaults' => [
         'guard' => 'web',
+        'guard' => 'api',
         'passwords' => 'users',
+        'passwords' => 'clientes',
     ],
 
     /*
@@ -39,6 +41,16 @@ return [
         'web' => [
             'driver' => 'session',
             'provider' => 'users',
+        ],
+        'webcliente' => [
+            'driver' => 'session',
+            'provider' => 'clientes',
+        ],
+
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'clientes',
+            'hash' => true,
         ],
     ],
 
@@ -65,10 +77,10 @@ return [
             'model' => App\Models\Administrador::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'clientes' => [
+           'driver' => 'eloquent',
+           'model' => App\Models\Cliente::class,
+        ],
     ],
 
     /*
