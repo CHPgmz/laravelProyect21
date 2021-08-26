@@ -18,6 +18,6 @@ class Venta extends Model
     }
 
     public function productos(){
-        return $this->belongToMany('App\Models\Producto','venta_producto','idProducto','idVenta');
+        return $this->belongsToMany('App\Models\Producto','venta_producto','idProducto','idVenta');
     }
 }

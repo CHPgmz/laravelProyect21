@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AdministradorController ;
-use App\Http\Controllers\ClienteController ;
-use App\Http\Controllers\VentaController ;
-use App\Http\Controllers\ProductoController ;
+use App\Http\Controllers\AdministradorController;
+use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\VentaController;
+use App\Http\Controllers\ProductoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,14 +25,15 @@ Route::resource('/admin/home', AdministradorController::class);
 Route::resource('/admin/clientes', ClienteController::class);
 Route::resource('/admin/ventas', VentaController::class);
 Route::resource('/admin/productos', ProductoController::class);
-Auth::routes();
+//Auth::route
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//Auth::routes();
+
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
