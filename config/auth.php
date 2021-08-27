@@ -16,6 +16,7 @@ return [
     'defaults' => [
         'guard' => 'web',
         'guard' => 'api',
+        'guard' => 'webcliente',
         'passwords' => 'users',
         'passwords' => 'clientes',
     ],

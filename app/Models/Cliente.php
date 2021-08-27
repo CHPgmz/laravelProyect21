@@ -13,6 +13,7 @@ class Cliente extends Authenticable
     use Notifiable;
     protected $table = 'cliente';
     protected $fillable = ['nombre', 'email', 'telefono', 'pass', 'direccion', 'colonia', 'ciudad', 'municipio', 'estado'];
+    protected $hidden = ['pass', 'api_token'];
     public $primaryKey = 'usuario';
     protected $keyType = 'string';
     public $incrementing = false;

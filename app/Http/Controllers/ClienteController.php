@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Cliente;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class ClienteController extends Controller
 {
@@ -67,14 +69,14 @@ class ClienteController extends Controller
 
     /**
      * Update the specified resource in storage.
-     *
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Cliente  $cliente
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Cliente $cliente)
     {
-        //
+        
     }
 
     /**
@@ -88,8 +90,10 @@ class ClienteController extends Controller
         //
     }
     public function loginAPI(Request $request){
-        if ( Auth::guard('webcliente')->attempt(['usuario'=>$request->input('u'),'pass'=>$request->input('p')])){
-            return '{"Respuesta":"usuario aceptado"}';
+        if ( Auth::guard('webcliente')->attempt([ 'usuario'=>$request->input('u'), 'password' => $request->input('p')])){
+            $token = Str::random(60);
+            Auth::guard('webcliente')->user()->forceFill(['api_token' => hash('sha256', $token)])->save(); 
+            return '{"Respuesta":"usuario aceptado","cliente": ' . Auth::guard('webcliente')->user() . ', "token":"'. $token .'"}';
         }
         return '{"Respuesta":"usuario no aceptado"}';
 
